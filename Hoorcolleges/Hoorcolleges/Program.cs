@@ -14,12 +14,20 @@ namespace Hoorcolleges
             //AgeCalculator calcy = new AgeCalculator();
             //calcy.Calculate();
 
+            //Voorbeeld hoorcollege
             var namen = new List<String>() { "STijn", "Bart", "Erik", "Bram", "Suzanne" };
+            var namen_startB_linq = from naam in namen where naam[0] == 'B' select naam;
+            var namen_startB_lambda = namen.Where(naam => naam[0] == 'B');
+            var namen_start_linq_delegate = namen.Where(EersteLetterB); 
 
-            var metB = from naam in namen where naam[0] == 'B';
+            //Extra voorbeeld lange linq
+            var garage = new Garage();
+            garage.RenderOverview();
+
+            Console.ReadLine();
         }
 
-        static public Boolean HasFIrstLetterB(string i)
+        static public Boolean EersteLetterB(string i)
         {
             return i[0] == 'B';
         }
