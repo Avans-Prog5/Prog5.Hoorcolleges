@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoorcolleges", "Hoorcollege
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoorcollege.week2", "Hoorcollege.week2\Hoorcollege.week2.csproj", "{CEBBAE86-D39D-4E6A-90CE-7A49EABD695F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoorcollege.Week3", "Hoorcollege.Week3\Hoorcollege.Week3.csproj", "{C4D7AB47-FC74-4E6F-A9C7-57B7802F1AB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CEBBAE86-D39D-4E6A-90CE-7A49EABD695F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEBBAE86-D39D-4E6A-90CE-7A49EABD695F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEBBAE86-D39D-4E6A-90CE-7A49EABD695F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D7AB47-FC74-4E6F-A9C7-57B7802F1AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D7AB47-FC74-4E6F-A9C7-57B7802F1AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D7AB47-FC74-4E6F-A9C7-57B7802F1AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D7AB47-FC74-4E6F-A9C7-57B7802F1AB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
