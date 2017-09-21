@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hoorcollege.Week3"
         mc:Ignorable="d"
-        Title="MvvM" Height="350" Width="525">
-    <Window.DataContext>
-        <local:MemeListVM></local:MemeListVM>
-    </Window.DataContext>
+        Title="MvvM" Height="350" Width="525"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        >
+
 
     <StackPanel>
+        <Button Command="{Binding AddMemeCommand}">Add meme</Button>
         <TextBlock>Onze memes:</TextBlock>
         <DataGrid Name="lijstje" ItemsSource="{Binding Memes}" ></DataGrid>
     </StackPanel>

@@ -45,13 +45,28 @@ namespace Hoorcollege.Week3.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel Main
+        private MemeListVM _main;
+
+        public MemeListVM Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                if(_main == null)
+                    _main = new MemeListVM();
+
+                return _main;
             }
         }
+
+        public AddMemeVM Iets
+        {
+            get
+            {
+                return new AddMemeVM(_main);
+            }
+        }
+         
+           
         
         public static void Cleanup()
         {
