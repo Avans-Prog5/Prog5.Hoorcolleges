@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GrandFinaleAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar(max)" />
+          <Property Name="IsGeheim" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Idee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IdeeDoel">
+          <Key>
+            <PropertyRef Name="DoelId" />
+            <PropertyRef Name="IdeeId" />
+          </Key>
+          <Property Name="DoelId" Type="int" Nullable="false" />
+          <Property Name="IdeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__IdeeDoel__DoelId__2A4B4B5E">
+          <End Role="Doel" Type="Self.Doel" Multiplicity="1" />
+          <End Role="IdeeDoel" Type="Self.IdeeDoel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdeeDoel">
+              <PropertyRef Name="DoelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IdeeDoel__IdeeId__2B3F6F97">
+          <End Role="Idee" Type="Self.Idee" Multiplicity="1" />
+          <End Role="IdeeDoel" Type="Self.IdeeDoel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Idee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdeeDoel">
+              <PropertyRef Name="IdeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GrandFinaleAModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doel" EntityType="Self.Doel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Idee" EntityType="Self.Idee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdeeDoel" EntityType="Self.IdeeDoel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__IdeeDoel__DoelId__2A4B4B5E" Association="Self.FK__IdeeDoel__DoelId__2A4B4B5E">
+            <End Role="Doel" EntitySet="Doel" />
+            <End Role="IdeeDoel" EntitySet="IdeeDoel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IdeeDoel__IdeeId__2B3F6F97" Association="Self.FK__IdeeDoel__IdeeId__2B3F6F97">
+            <End Role="Idee" EntitySet="Idee" />
+            <End Role="IdeeDoel" EntitySet="IdeeDoel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GrandFinaleAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsGeheim" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Idees" Relationship="Self.IdeeDoel" FromRole="Doel" ToRole="Idee" />
+        </EntityType>
+        <EntityType Name="Idee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Doels" Relationship="Self.IdeeDoel" FromRole="Idee" ToRole="Doel" />
+        </EntityType>
+        <Association Name="IdeeDoel">
+          <End Role="Doel" Type="Self.Doel" Multiplicity="*" />
+          <End Role="Idee" Type="Self.Idee" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="GrandFinaleAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Doels" EntityType="Self.Doel" />
+          <EntitySet Name="Idees" EntityType="Self.Idee" />
+          <AssociationSet Name="IdeeDoel" Association="Self.IdeeDoel">
+            <End Role="Doel" EntitySet="Doels" />
+            <End Role="Idee" EntitySet="Idees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GrandFinaleAModelStoreContainer" CdmEntityContainer="GrandFinaleAEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="GrandFinaleAModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doels">
+            <EntityTypeMapping TypeName="GrandFinaleAModel.Doel">
+              <MappingFragment StoreEntitySet="Doel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="IsGeheim" ColumnName="IsGeheim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Idees">
+            <EntityTypeMapping TypeName="GrandFinaleAModel.Idee">
+              <MappingFragment StoreEntitySet="Idee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="IdeeDoel" TypeName="GrandFinaleAModel.IdeeDoel" StoreEntitySet="IdeeDoel">
+            <EndProperty Name="Doel">
+              <ScalarProperty Name="Id" ColumnName="DoelId" />
+            </EndProperty>
+            <EndProperty Name="Idee">
+              <ScalarProperty Name="Id" ColumnName="IdeeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

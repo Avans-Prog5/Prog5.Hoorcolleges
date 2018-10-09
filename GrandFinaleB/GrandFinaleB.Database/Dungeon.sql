@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Dungeon]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Name] NVARCHAR(MAX) NOT NULL, 
+    [Level] INT NOT NULL DEFAULT 1
+)
